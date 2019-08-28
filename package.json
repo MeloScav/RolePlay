@@ -1,0 +1,25 @@
+{
+  "name": "@meloe/roleplay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeloScav/RolePlay.git"
+  },
+  "author": "Méloé Scavezzoni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeloScav/RolePlay/issues"
+  },
+  "homepage": "https://github.com/MeloScav/RolePlay#readme",
+  "bin": {
+    "game": "./index.js"
+  },
+  "dependencies": {
+    "prompts": "^2.2.1"
+  }
+}
