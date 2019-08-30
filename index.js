@@ -2,7 +2,7 @@
 const prompts = require('prompts');
 const CFonts = require('cfonts');
 const gradient = require('gradient-string');
-const chalkAnimation = require('chalk-animation');
+const chalk = require('chalk');
 
 let score = 0;
 
@@ -112,6 +112,39 @@ const questionArcades = [
     }
 ];
 
+/*  Bug arcade name */
+let thisName = "Christophe Michel";
+/* */
+
+ /*   Début ARCADE    */
+ let arcade = async () => {
+    console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
+    const respArc = await prompts(questionArcades);
+    let choiceArcadesYoN = respArc.qAnthony ;
+
+    if(choiceArcadesYoN == "Yes"){
+        console.log(`
+    You accept, but ` + chalk.hex('#F951DD')(`Jessica`) +` who was hidden in the room throws `+ chalk.redBright(`a real puck in the face.`)+
+    chalk.red(`
+    GAME OVER...`));
+    }
+    else{
+        let finish = `
+    You refuse because you don't want to test a game before you see his code.` + chalk.green(` Good choice !`) +
+    gradient.rainbow(`
+    Christophe Michel makes his appearance and congratulates you before leaving on his magic lama...`);
+        if(thisName == "Christophe Michel"){
+            console.log(finish + `
+    Ps:` +  gradient.rainbow(` There is only one real Christophe Michel !`)
+            );
+        }
+        else{
+console.log(finish);  
+        }
+    }
+}
+/* Fin arcade */
+
 
 
 /*                             THE GAME                         */
@@ -141,7 +174,7 @@ let play = async () => {
 
     console.log(`
     Oh, miserable! You have decided to venture into the Fort-BeCode! 
-    You don’t know what’s going to happen (and we either). 
+    You don’t know what’s going to happen (and we neither). 
     You will have to be brave and make good choices!`)
 
     /*             Choix du chemin         */
@@ -180,43 +213,19 @@ let play = async () => {
                         console.log(`
         She's asking you to take him back to the « Terminal ».
         `);
-        console.log(`
-        You are stupid, you have taken the wrong root and you find yourself out of the PIL without the pass. 
+        console.log(chalk.redBright(`
+        You are stupid`) + `, you have taken the wrong root and you find yourself out of the PIL` + chalk.redBright(`without the pass. `)+
+        chalk.red(`
         GAME OVER...
-        `);   
+        `));   
                     }
                     else{
                         console.log(`
-        She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
-                        `);
+        She’s asking you to look for him with Ashraf, aka `+ chalk.cyan(`« Harry-Coder ».
+                        `));
+                        score = score + 15;
 
-                        /*   Début ARCADE    */
-                        let arcade = async () => {
-                            console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
-                            const respArc = await prompts(questionArcades);
-                            let choiceArcadesYoN = respArc.qAnthony ;
-                
-                            if(choiceArcadesYoN == "Yes"){
-                                console.log(`
-        You accept, but Jessica who was hidden in the room throws a real puck in the face. 
-        GAME OVER...`)
-                            }
-                            else{
-                                let finish = `
-        You refuse because you don't want to test a game before you see his code. Good choice !
-        hristophe Michel makes his appearance and congratulates you before leaving on his magic lama...`
-                                if(thisName == "Christophe Michel"){
-                                    console.log(finish + `
-        Ps: There is only one real Christophe Michel !
-                                    `);
-                                }
-                                else{
-                        console.log(finish);  
-                                }
-                
-                            }
-                
-                        }
+                       /*  ARCADES  */
                         arcade();
                         /*  Fin ARCADE  */
                     }
@@ -229,11 +238,11 @@ let play = async () => {
                 /*   Explosion ascenseur   */
                 }
                 else{
-                    console.log(`
-        BOUM !!!!!
+                    console.log(chalk.redBright(`
+        BOUM !!!!!`)+`
         The elevator explodes and you find yourself in BeCode's cellar.
-        You meet Eric who asks you to sign an attendance contract...
-                    `);
+        You meet Eric who asks you` + chalk.red(`to sign an attendance contract...
+                    `));
                 
                 /*      Question Eric        */
                     let eric = async () => {
@@ -241,8 +250,8 @@ let play = async () => {
                         let choiceEricYoN = respEric.qEric ;
             
                         if(choiceEricYoN == "Yes"){
-                            console.log(`
-            GAME OVER, you score : ${score}
+                            console.log(chalk.red(`
+            GAME OVER`)+ `, you score : ${score}
                         `);
                             score = score +10 ;
                         }
@@ -263,7 +272,7 @@ let play = async () => {
             
             }
             second();
-            /*          Fin question ASCENSEUR        */
+            /*         Fin question ASCENSEUR       */
     
     
     
@@ -272,7 +281,7 @@ let play = async () => {
         else{
             console.log(`
         You go up the stairs, they take you directly to the BeCode class.
-        There you meet Julie who introduces you to the witch « Lara-Vel »
+        There you meet Julie who introduces you to the witch`+ chalk.green(`« Lara-Vel »`)+`
         She asks you if you've seen her "Artisan" ?`)
 
         
@@ -286,7 +295,9 @@ let play = async () => {
         She's asking you to take him back to the « Terminal ».
                 `);
                 /* tu te perds et tu meures */
-                    console.log("You are stupid, you have taken the wrong root and you find yourself out of the PIL without the pass. Game Over");   
+                    console.log(chalk.red(`
+        You are stupid`) + `, you have taken the wrong root and you find yourself out of the PIL without the pass.`+ 
+        chalk.red(`Game Over`));   
 
                 }
                 else{
