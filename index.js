@@ -126,13 +126,15 @@ let thisName = "Christophe Michel";
         console.log(`
     You accept, but ` + chalk.hex('#F951DD')(`Jessica`) +` who was hidden in the room throws `+ chalk.redBright(`a real puck in the face.`)+
     chalk.red(`
-    GAME OVER...`));
+    GAME OVER...`) + ` Your score : ${score}`);
+    console.log(score);
     }
     else{
         let finish = `
     You refuse because you don't want to test a game before you see his code.` + chalk.green(` Good choice !`) +
     gradient.rainbow(`
-    Christophe Michel makes his appearance and congratulates you before leaving on his magic lama...`);
+    Christophe Michel makes his appearance and congratulates you before leaving on his magic lama...
+    Your score : ${score}`);
         if(thisName == "Christophe Michel"){
             console.log(finish + `
     Ps:` +  gradient.rainbow(` There is only one real Christophe Michel !`)
@@ -216,14 +218,18 @@ let play = async () => {
         console.log(chalk.redBright(`
         You are stupid`) + `, you have taken the wrong root and you find yourself out of the PIL` + chalk.redBright(`without the pass. `)+
         chalk.red(`
-        GAME OVER...
-        `));   
+        GAME OVER... ` + `
+        Score : ${score}`));   
                     }
                     else{
                         console.log(`
-        She’s asking you to look for him with Ashraf, aka `+ chalk.cyan(`« Harry-Coder ».
-                        `));
-                        score = score + 15;
+        She’s asking you to look for him with Ashraf, aka `+ chalk.cyan(`« Harry-Coder ».`)+ `
+        Harry-Coder takes you to the arcade....`);
+
+                        console.log(`
+        Harry Coder sass the monsters with his magic wand and leads you straight to the arcade.`);
+                    score = score + 20;
+ 
 
                        /*  ARCADES  */
                         arcade();
@@ -241,7 +247,7 @@ let play = async () => {
                     console.log(chalk.redBright(`
         BOUM !!!!!`)+`
         The elevator explodes and you find yourself in BeCode's cellar.
-        You meet Eric who asks you` + chalk.red(`to sign an attendance contract...
+        You meet Eric who asks you ` + chalk.red(`to sign an attendance contract...
                     `));
                 
                 /*      Question Eric        */
@@ -253,13 +259,13 @@ let play = async () => {
                             console.log(chalk.red(`
             GAME OVER`)+ `, you score : ${score}
                         `);
-                            score = score +10 ;
                         }
                         else{
             /*    Salle d'arcade après Eric    */
                             console.log(`
             You run to the arcade....
                             `);
+                            score = score +10;
 
                             /*  Arcade  */
                             arcade();
@@ -297,7 +303,8 @@ let play = async () => {
                 /* tu te perds et tu meures */
                     console.log(chalk.red(`
         You are stupid`) + `, you have taken the wrong root and you find yourself out of the PIL without the pass.`+ 
-        chalk.red(`Game Over`));   
+        chalk.red(`Game Over`) + `
+        Your score : ${score}`);   
 
                 }
                 else{
@@ -305,7 +312,9 @@ let play = async () => {
         She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
         Harry-Coder takes you to the arcade....
         `);
-                    console.log("Harry Coder sass the monsters with his magic wand and leads you straight to the arcade.");
+                    console.log(`
+        Harry Coder sass the monsters with his magic wand and leads you straight to the arcade.`);
+                    score = score + 20;
 
         /* Arcades  */
         arcade();
