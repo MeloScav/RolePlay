@@ -123,11 +123,11 @@ let play = async () => {
     let thisClass = response.chooseCharacterClass;
 
     if(thisName  == ""){
-        thisName = "Christophe-Michel";
+        thisName = "Christophe Michel";
         thisClass = "THE singer God"
     }
-
-    if(thisName == "Christophe-Michel"){
+    /*     Christophe Michel, le bonus     */
+    if(thisName == "Christophe Michel"){
         console.log(gradient.rainbow(`
     Hello ${thisName}, you are ${thisClass} 
          `));
@@ -217,14 +217,41 @@ let play = async () => {
                             console.log(`
             You run to the arcade....
                             `);
+
+                            let arcade = async () => {
+                                console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
+                                const respArc = await prompts(questionArcades);
+                                let choiceArcadesYoN = respArc.qAnthony ;
+                    
+                                if(choiceArcadesYoN == "Yes"){
+                                    console.log(`
+            You accept, but Jessica who was hidden in the room throws a real puck in the face. 
+            GAME OVER...`)
+                                }
+                                else{
+                                    let finish = `
+            You refuse because you don't want to test a game before you see his code. Good choice !
+            hristophe Michel makes his appearance and congratulates you before leaving on his magic lama...`
+                                    if(thisName == "Christophe Michel"){
+                                        console.log(finish + `
+            Ps: There is only one real Christophe Michel !
+                                        `);
+                                    }
+                                    else{
+                            console.log(finish);  
+                                    }
+                    
+                          
+                    
+                                }
+                    
+                            }
+                            arcade();
                         }
 
-                        /* arcade */
-                    
                     }
                     eric();
                 }
-            
             
             }
             second();
@@ -260,21 +287,6 @@ let play = async () => {
                     console.log("Harry Coder sass the monsters with his magic wand and leads you straight to the arcade.");
 
         /* Arcades  */
-        let arcade = async () => {
-            console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
-            const respArc = await prompts(questionArcades);
-            let choiceArcadesYoN = respArc.qAnthony ;
-
-            if(choiceArcadesYoN == "Yes"){
-                console.log("You accept, but Jessica who was hidden in the room throws a real puck in the face. Game Over.")
-            }
-            else{
-                console.log("You refuse because you don't want to test a game before you see his code. Good choice !")
-            }
-
-            
-        
-        }
         arcade();
 
 
