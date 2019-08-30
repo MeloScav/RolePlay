@@ -98,6 +98,19 @@ const questionEric = [
     }
 ];
 
+/*          Questions arcades            */
+const questionArcades = [
+    {
+    type: "select",
+    name: "qAnthony",
+    message: "Do you want to play it ? ",
+    choices: [
+        { title: "Yes", description: "Beautiful virtual game", value: "Yes"},
+        { title: "No", description: "Are you sure ? It's really beautiful... ", value: "No"}
+    ],
+    initial: 0
+    }
+];
 
 
 
@@ -205,6 +218,8 @@ let play = async () => {
             You run to the arcade....
                             `);
                         }
+
+                        /* arcade */
                     
                     }
                     eric();
@@ -232,29 +247,47 @@ let play = async () => {
                 if(choiceStairsYoN == "Yes"){
                     console.log(`
         She's asking you to take him back to the « Terminal ».
-        `);
-                    score = score +15 ;
+                `);
+                /* tu te perds et tu meures */
+                    console.log("You are stupid, you have taken the wrong root and you find yourself out of the PIL without the pass. Game Over");   
+
                 }
                 else{
                     console.log(`
         She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
         Harry-Coder takes you to the arcade....
         `);
+                    console.log("Harry Coder sass the monsters with his magic wand and leads you straight to the arcade.");
+
+        /* Arcades  */
+        let arcade = async () => {
+            console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
+            const respArc = await prompts(questionArcades);
+            let choiceArcadesYoN = respArc.qAnthony ;
+
+            if(choiceArcadesYoN == "Yes"){
+                console.log("You accept, but Jessica who was hidden in the room throws a real puck in the face. Game Over.")
+            }
+            else{
+                console.log("You refuse because you don't want to test a game before you see his code. Good choice !")
+            }
+
+            
+        
+        }
+        arcade();
+
+
                 }
         
         
             }
             third();
-        
-
-
 
         }
        
-
     }
     begin();
-
 
 };
 play();
