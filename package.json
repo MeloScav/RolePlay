@@ -20,6 +20,7 @@
     "game": "./index.js"
   },
   "dependencies": {
+    "inquirer": "^7.0.0",
     "prompts": "^2.2.1"
   }
 }
