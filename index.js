@@ -114,7 +114,7 @@ const questionArcades = [
 
 
 
-/*                             The game                          */
+/*                             THE GAME                         */
 let play = async () => {
     const response = await prompts(questions);
 
@@ -164,14 +164,14 @@ let play = async () => {
                     console.log(`
         The elevator goes up and you can go to the BeCode class.
                 `);
-                    score = score +5 ;
+                    score = score +15 ;
 
                    /*          Retour en haut si oui         */
                     console.log(`
         There you meet Julie who introduces you to the witch « Lara-Vel »
-        She asks you if you've seen her "Artisan" ?`)
+        She asks you if you've seen her "Artisan" ?`);
             
-                /*         Question en haut      */
+                /*         Question en haut : Julie     */
                 let third = async () => {
                     const respStairs = await prompts(questionS);
                     let choiceStairsYoN = respStairs.qStairs ;
@@ -179,17 +179,51 @@ let play = async () => {
                     if(choiceStairsYoN == "Yes"){
                         console.log(`
         She's asking you to take him back to the « Terminal ».
-                    `);
-                        score = score +10 ;
+        `);
+        console.log(`
+        You are stupid, you have taken the wrong root and you find yourself out of the PIL without the pass. 
+        GAME OVER...
+        `);   
                     }
                     else{
                         console.log(`
         She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
                         `);
+
+                        /*   Début ARCADE    */
+                        let arcade = async () => {
+                            console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
+                            const respArc = await prompts(questionArcades);
+                            let choiceArcadesYoN = respArc.qAnthony ;
+                
+                            if(choiceArcadesYoN == "Yes"){
+                                console.log(`
+        You accept, but Jessica who was hidden in the room throws a real puck in the face. 
+        GAME OVER...`)
+                            }
+                            else{
+                                let finish = `
+        You refuse because you don't want to test a game before you see his code. Good choice !
+        hristophe Michel makes his appearance and congratulates you before leaving on his magic lama...`
+                                if(thisName == "Christophe Michel"){
+                                    console.log(finish + `
+        Ps: There is only one real Christophe Michel !
+                                    `);
+                                }
+                                else{
+                        console.log(finish);  
+                                }
+                
+                            }
+                
+                        }
+                        arcade();
+                        /*  Fin ARCADE  */
                     }
                 
                 }
                 third();
+                /*    Fin question Julie   */
 
 
                 /*   Explosion ascenseur   */
@@ -201,14 +235,14 @@ let play = async () => {
         You meet Eric who asks you to sign an attendance contract...
                     `);
                 
-                
+                /*      Question Eric        */
                     let eric = async () => {
                         const respEric = await prompts(questionEric);
                         let choiceEricYoN = respEric.qEric ;
             
                         if(choiceEricYoN == "Yes"){
-                            console.log(chalkAnimation.neon(`
-            GAME OVER`)+ `, you score : ${score}
+                            console.log(`
+            GAME OVER, you score : ${score}
                         `);
                             score = score +10 ;
                         }
@@ -218,47 +252,23 @@ let play = async () => {
             You run to the arcade....
                             `);
 
-                            let arcade = async () => {
-                                console.log("You enter the arcade and the master of the game Anthony invites you to face him in a airhockey game in VR.")
-                                const respArc = await prompts(questionArcades);
-                                let choiceArcadesYoN = respArc.qAnthony ;
-                    
-                                if(choiceArcadesYoN == "Yes"){
-                                    console.log(`
-            You accept, but Jessica who was hidden in the room throws a real puck in the face. 
-            GAME OVER...`)
-                                }
-                                else{
-                                    let finish = `
-            You refuse because you don't want to test a game before you see his code. Good choice !
-            hristophe Michel makes his appearance and congratulates you before leaving on his magic lama...`
-                                    if(thisName == "Christophe Michel"){
-                                        console.log(finish + `
-            Ps: There is only one real Christophe Michel !
-                                        `);
-                                    }
-                                    else{
-                            console.log(finish);  
-                                    }
-                    
-                          
-                    
-                                }
-                    
-                            }
+                            /*  Arcade  */
                             arcade();
                         }
 
                     }
                     eric();
+                    /*  Fin question Eric  */
                 }
             
             }
             second();
+            /*          Fin question ASCENSEUR        */
     
     
     
     }
+        /*      Quand tu prends les ESCALIERS       */
         else{
             console.log(`
         You go up the stairs, they take you directly to the BeCode class.
@@ -266,7 +276,7 @@ let play = async () => {
         She asks you if you've seen her "Artisan" ?`)
 
         
-            /*          Question si prit escaliers           */
+            /*          Question escaliers  : Julie         */
             let third = async () => {
                 const respStairs = await prompts(questionS);
                 let choiceStairsYoN = respStairs.qStairs ;
@@ -289,12 +299,11 @@ let play = async () => {
         /* Arcades  */
         arcade();
 
-
                 }
-        
         
             }
             third();
+            /*          Fin question Julie      */
 
         }
        
