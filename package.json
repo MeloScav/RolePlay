@@ -20,6 +20,9 @@
     "game": "./index.js"
   },
   "dependencies": {
+    "cfonts": "^2.4.5",
+    "chalk-animation": "^1.6.0",
+    "gradient-string": "^1.2.0",
     "inquirer": "^7.0.0",
     "prompts": "^2.2.1"
   }

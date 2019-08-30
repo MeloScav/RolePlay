@@ -1,9 +1,26 @@
 #!/usr/bin/env node
 const prompts = require('prompts');
+const CFonts = require('cfonts');
+const gradient = require('gradient-string');
+const chalkAnimation = require('chalk-animation');
 
 let score = 0;
 
-/*          Questions               */
+
+CFonts.say('The game', {
+    font: 'chrome',           
+	align: 'center',              
+	colors: ['candy'],        
+	background: 'transparent',  
+	letterSpacing: 1,    
+	lineHeight: 2,     
+	space: true,         
+	maxLength: '0',      
+});
+
+
+
+/*                            Questions                              */
 /*   Class   */
 const questions = [
     {
@@ -67,11 +84,28 @@ const questionS = [
     }
 ];
 
+/*     Boum ascenseur    */
+const questionEric = [
+    {
+    type: "select",
+    name: "qEric",
+    message: 'Do you want to read it ?',
+    choices: [
+        { title: "Yes", description: "You want, really ?", value: "Yes"},
+        { title: "No", description: "Are you sure ?", value: "No"}
+    ],
+    initial: 0
+    }
+];
 
-/*                              */
+
+
+
+/*                             The game                          */
 let play = async () => {
     const response = await prompts(questions);
 
+    /*      Choix de classes          */
     let thisName = response.chooseName ;
     let thisClass = response.chooseCharacterClass;
 
@@ -80,17 +114,24 @@ let play = async () => {
         thisClass = "THE singer God"
     }
 
-
-    console.log(`
+    if(thisName == "Christophe-Michel"){
+        console.log(gradient.rainbow(`
     Hello ${thisName}, you are ${thisClass} 
-    `);
+         `));
+         score = 200;
+    }
+    else{
+        console.log(`
+    Hello ` + gradient.fruit(thisName) + ", you are " + gradient.fruit(thisClass)
+        );
+    }
 
     console.log(`
     Oh, miserable! You have decided to venture into the Fort-BeCode! 
     You don’t know what’s going to happen (and we either). 
     You will have to be brave and make good choices!`)
 
-    
+    /*             Choix du chemin         */
     let begin = async () => {
         const resp = await prompts(first);
         let thisChoice = resp.firstChoice ;
@@ -101,7 +142,7 @@ let play = async () => {
         To get out, you have to answer his question : "Is CHIMMO the best site in the world ?" `)
        
 
-        
+            /*     Question dans l'ascenseur   */
             let second = async () => {
                 const respYoN = await prompts(questionE);
                 let choiceYoN = respYoN.qElevator ;
@@ -109,38 +150,36 @@ let play = async () => {
                 if(choiceYoN == "Yes"){
                     console.log(`
         The elevator goes up and you can go to the BeCode class.
-
                 `);
-                    score = score +1 ;
+                    score = score +5 ;
 
-                   /* 3 */
+                   /*          Retour en haut si oui         */
                     console.log(`
         There you meet Julie who introduces you to the witch « Lara-Vel »
         She asks you if you've seen her "Artisan" ?`)
             
-            
+                /*         Question en haut      */
                 let third = async () => {
                     const respStairs = await prompts(questionS);
                     let choiceStairsYoN = respStairs.qStairs ;
         
                     if(choiceStairsYoN == "Yes"){
                         console.log(`
-            She's asking you to take him back to the « Terminal ».
+        She's asking you to take him back to the « Terminal ».
                     `);
-                        score = score +1 ;
+                        score = score +10 ;
                     }
                     else{
                         console.log(`
-            She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
+        She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
                         `);
                     }
-                
                 
                 }
                 third();
 
 
-                   /* fin 3 */
+                /*   Explosion ascenseur   */
                 }
                 else{
                     console.log(`
@@ -148,6 +187,27 @@ let play = async () => {
         The elevator explodes and you find yourself in BeCode's cellar.
         You meet Eric who asks you to sign an attendance contract...
                     `);
+                
+                
+                    let eric = async () => {
+                        const respEric = await prompts(questionEric);
+                        let choiceEricYoN = respEric.qEric ;
+            
+                        if(choiceEricYoN == "Yes"){
+                            console.log(chalkAnimation.neon(`
+            GAME OVER`)+ `, you score : ${score}
+                        `);
+                            score = score +10 ;
+                        }
+                        else{
+            /*    Salle d'arcade après Eric    */
+                            console.log(`
+            You run to the arcade....
+                            `);
+                        }
+                    
+                    }
+                    eric();
                 }
             
             
@@ -164,26 +224,27 @@ let play = async () => {
         She asks you if you've seen her "Artisan" ?`)
 
         
-    
-        let third = async () => {
-            const respStairs = await prompts(questionS);
-            let choiceStairsYoN = respStairs.qStairs ;
+            /*          Question si prit escaliers           */
+            let third = async () => {
+                const respStairs = await prompts(questionS);
+                let choiceStairsYoN = respStairs.qStairs ;
 
-            if(choiceStairsYoN == "Yes"){
-                console.log(`
-    She's asking you to take him back to the « Terminal ».
-            `);
-                score = score +1 ;
-            }
-            else{
-                console.log(`
-    She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
-                `);
-            }
+                if(choiceStairsYoN == "Yes"){
+                    console.log(`
+        She's asking you to take him back to the « Terminal ».
+        `);
+                    score = score +15 ;
+                }
+                else{
+                    console.log(`
+        She’s asking you to look for him with Ashraf, aka « Harry-Coder ».
+        Harry-Coder takes you to the arcade....
+        `);
+                }
         
         
-        }
-        third();
+            }
+            third();
         
 
 
@@ -195,13 +256,9 @@ let play = async () => {
     begin();
 
 
-   
-
-
-
-
 };
 play();
+/*         End game             */
 
 
 
